@@ -1,0 +1,36 @@
+# Git
+.DS_Store
+Thumbs.db
+
+# ROS 2 workspace artifacts
+/pc/ros2_ws/build/
+/pc/ros2_ws/install/
+/pc/ros2_ws/log/
+/pc/ros2_ws/core.*
+/build/
+/install/
+/log/
+
+# ESP32 artifacts
+/esp32/target/
+/esp32/.embuild/
+/esp32/.cargo/config.toml
+
+# Local runtime/private config
+/pc/ros2_ws/src/arm_control/config/servo_driver.yaml
+/pc/ros2_ws/src/arm_control/config/servo_driver_esp32.yaml
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+
+# IDE
+.idea/
+.vscode/
+
+# Containers
+*.tar

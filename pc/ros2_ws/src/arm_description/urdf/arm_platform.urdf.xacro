@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="arm_platform">
+  <xacro:property name="pi_const" value="3.1415926535897931"/>
+  <xacro:property name="base_height" value="0.06"/>
+  <xacro:property name="link_1_length" value="0.08"/>
+  <xacro:property name="link_2_length" value="0.10"/>
+  <xacro:property name="link_3_length" value="0.10"/>
+  <xacro:property name="link_4_length" value="0.08"/>
+  <xacro:property name="link_5_length" value="0.05"/>
+  <xacro:property name="link_radius" value="0.015"/>
+
+  <material name="base_blue">
+    <color rgba="0.18 0.31 0.45 1.0"/>
+  </material>
+  <material name="arm_orange">
+    <color rgba="0.83 0.48 0.21 1.0"/>
+  </material>
+  <material name="joint_dark">
+    <color rgba="0.15 0.15 0.15 1.0"/>
+  </material>
+
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <cylinder radius="0.05" length="${base_height}"/>
+      </geometry>
+      <material name="base_blue"/>
+    </visual>
+  </link>
+
+  <link name="link_1">
+    <visual>
+      <origin xyz="0 0 ${link_1_length / 2.0}" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="${link_radius}" length="${link_1_length}"/>
+      </geometry>
+      <material name="joint_dark"/>
+    </visual>
+  </link>
+
+  <joint name="joint_1" type="revolute">
+    <parent link="base_link"/>
+    <child link="link_1"/>
+    <origin xyz="0 0 ${base_height / 2.0}" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="${-pi}" upper="${pi}" effort="1.0" velocity="0.5"/>
+  </joint>
+
+  <link name="link_2">
+    <visual>
+        <origin xyz="${link_2_length / 2.0} 0 0" rpy="0 ${pi_const / 2.0} 0"/>
+      <geometry>
+        <cylinder radius="${link_radius}" length="${link_2_length}"/>
+      </geometry>
+      <material name="arm_orange"/>
+    </visual>
+  </link>
+
+  <joint name="joint_2" type="revolute">
+    <parent link="link_1"/>
+    <child link="link_2"/>
+    <origin xyz="0 0 ${link_1_length}" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="${-pi_const}" upper="${pi_const}" effort="1.0" velocity="0.5"/>
+  </joint>
+
+  <link name="link_3">
+    <visual>
+        <origin xyz="${link_3_length / 2.0} 0 0" rpy="0 ${pi_const / 2.0} 0"/>
+      <geometry>
+        <cylinder radius="${link_radius}" length="${link_3_length}"/>
+      </geometry>
+      <material name="arm_orange"/>
+    </visual>
+  </link>
+
+  <joint name="joint_3" type="revolute">
+    <parent link="link_2"/>
+    <child link="link_3"/>
+    <origin xyz="${link_2_length} 0 0" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="${-pi_const}" upper="${pi_const}" effort="1.0" velocity="0.5"/>
+  </joint>
+
+  <link name="link_4">
+    <visual>
+        <origin xyz="${link_4_length / 2.0} 0 0" rpy="0 ${pi_const / 2.0} 0"/>
+      <geometry>
+        <cylinder radius="${link_radius}" length="${link_4_length}"/>
+      </geometry>
+      <material name="joint_dark"/>
+    </visual>
+  </link>
+
+  <joint name="joint_4" type="revolute">
+    <parent link="link_3"/>
+    <child link="link_4"/>
+    <origin xyz="${link_3_length} 0 0" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="${-pi_const}" upper="${pi_const}" effort="1.0" velocity="0.5"/>
+  </joint>
+
+  <link name="link_5">
+    <visual>
+      <origin xyz="0 0 ${link_5_length / 2.0}" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="${link_radius * 0.8}" length="${link_5_length}"/>
+      </geometry>
+      <material name="arm_orange"/>
+    </visual>
+  </link>
+
+  <joint name="joint_5" type="revolute">
+    <parent link="link_4"/>
+    <child link="link_5"/>
+    <origin xyz="${link_4_length} 0 0" rpy="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit lower="${-pi_const}" upper="${pi_const}" effort="1.0" velocity="0.5"/>
+  </joint>
+
+  <link name="tool_link">
+    <visual>
+      <origin xyz="0 0 ${link_5_length / 2.0}" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.03 0.03 ${link_5_length}"/>
+      </geometry>
+      <material name="joint_dark"/>
+    </visual>
+  </link>
+
+  <joint name="joint_6" type="revolute">
+    <parent link="link_5"/>
+    <child link="tool_link"/>
+    <origin xyz="0 0 ${link_5_length}" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="${-pi}" upper="${pi}" effort="1.0" velocity="0.5"/>
+  </joint>
+</robot>
