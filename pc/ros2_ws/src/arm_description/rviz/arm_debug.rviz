@@ -22,7 +22,7 @@ Visualization Manager:
       Name: RobotModel
       Visual Enabled: true
     - Class: rviz_default_plugins/TF
-      Enabled: true
+      Enabled: false
       Name: TF
   Enabled: true
   Fixed Frame: base_link
@@ -44,4 +44,3 @@ Visualization Manager:
 Window Geometry:
   Height: 900
   Width: 1500
-

@@ -38,14 +38,14 @@
     home_position_deg: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
     direction_signs: [-1, -1, 1, 1, 1, 1]
     angle_offsets_deg: [90.0, 90.0, 90.0, 90.0, 90.0, 90.0]
-    min_angle_deg: [-180.0, -180.0, -180.0, -180.0, -180.0, -180.0]
-    max_angle_deg: [180.0, 180.0, 180.0, 180.0, 180.0, 180.0]
+    min_angle_deg: [-90.0, -90.0, -90.0, -90.0, -90.0, -90.0]
+    max_angle_deg: [90.0, 90.0, 90.0, 90.0, 90.0, 90.0]
     servo_min_deg: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
     servo_max_deg: [180.0, 180.0, 180.0, 180.0, 180.0, 180.0]
     fixed_output_channels: [12]
     fixed_output_angles_deg: [90.0]
-    target_min_deg: [-120.0, -180.0, -180.0, -180.0, -180.0, -180.0]
-    target_max_deg: [120.0, 180.0, 180.0, 180.0, 180.0, 180.0]
+    target_min_deg: [-90.0, -90.0, -90.0, -90.0, -90.0, -90.0]
+    target_max_deg: [90.0, 90.0, 90.0, 90.0, 90.0, 90.0]
     update_rate_hz: 30.0
     max_step_deg: 0.8
     max_velocity_deg_s: 8.0

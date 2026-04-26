@@ -1,3 +1,5 @@
+from glob import glob
+
 from setuptools import setup
 
 package_name = "arm_description"
@@ -12,6 +14,7 @@ setup(
         ("share/arm_description/launch", ["launch/display.launch.py"]),
         ("share/arm_description/urdf", ["urdf/arm_platform.urdf.xacro"]),
         ("share/arm_description/rviz", ["rviz/arm_debug.rviz"]),
+        ("share/arm_description/meshes", glob("meshes/*.stl")),
     ],
     install_requires=["setuptools"],
     zip_safe=True,
